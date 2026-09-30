@@ -13,7 +13,11 @@
         <span class="head-desc">面向港口集装箱码头船舶靠离泊、岸桥装卸、堆场翻倒、闸口进出与危险品申报的一体化作业管理后台。</span>
         <span class="head-user">当前值班：{{ store.operator }} · {{ store.shiftLabel }}</span>
       </header>
-      <RouterView />
+      <RouterView v-slot="{ Component }">
+        <KeepAlive :include="['RtgList']">
+          <component :is="Component" />
+        </KeepAlive>
+      </RouterView>
     </main>
   </div>
 </template>

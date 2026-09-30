@@ -31,11 +31,13 @@ class Store:
         modules: list[dict[str, object]] = []
         for name in self.module_names():
             rows = self.rows(name)
+            # 场桥调度报表与列表口径一致：停用即不在场，不计入在场台数。
+            counted = [row for row in rows if not (name == "rtg" and row.get("status") == "停用")]
             modules.append({
                 "name": name,
-                "created": len(rows),
-                "pending": sum(1 for row in rows if row.get("pending")),
-                "abnormal": sum(1 for row in rows if row.get("abnormal")),
+                "created": len(counted),
+                "pending": sum(1 for row in counted if row.get("pending")),
+                "abnormal": sum(1 for row in counted if row.get("abnormal")),
             })
         cards = [
             {"label": "业务模块", "value": len(modules)},

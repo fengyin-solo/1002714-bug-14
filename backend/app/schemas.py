@@ -13,6 +13,8 @@ class PageResult(BaseModel, Generic[T]):
     total: int
     page: int = 1
     size: int = 20
+    # 在场各状态台数，供列表页卡片展示；口径与当前列表的过滤条件同源。
+    stats: dict[str, int] | None = None
 
 
 class ActionResult(BaseModel):

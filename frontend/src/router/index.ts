@@ -6,6 +6,7 @@ const Vessel = () => import('@/views/vessel/index.vue')
 const Quaycrane = () => import('@/views/quaycrane/index.vue')
 const Yardplan = () => import('@/views/yardplan/index.vue')
 const Rtg = () => import('@/views/rtg/index.vue')
+const RtgDetail = () => import('@/views/rtg/detail.vue')
 const Truck = () => import('@/views/truck/index.vue')
 const Container = () => import('@/views/container/index.vue')
 const Gate = () => import('@/views/gate/index.vue')
@@ -30,7 +31,8 @@ const router = createRouter({
     { path: '/vessel', name: 'vessel', component: Vessel },
     { path: '/quaycrane', name: 'quaycrane', component: Quaycrane },
     { path: '/yardplan', name: 'yardplan', component: Yardplan },
-    { path: '/rtg', name: 'rtg', component: Rtg },
+    { path: '/rtg', name: 'rtg', component: Rtg, meta: { keepAlive: true } },
+    { path: '/rtg/:id', name: 'rtg-detail', component: RtgDetail },
     { path: '/truck', name: 'truck', component: Truck },
     { path: '/container', name: 'container', component: Container },
     { path: '/gate', name: 'gate', component: Gate },
